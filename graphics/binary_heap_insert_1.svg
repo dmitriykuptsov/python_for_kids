@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="binary_tree_insert_1.svg">
+   sodipodi:docname="binary_heap_insert_1.svg">
   <defs
      id="defs4">
     <marker
@@ -55,9 +55,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.2123014"
-     inkscape:cx="64.447626"
-     inkscape:cy="894.38514"
+     inkscape:zoom="1.7144531"
+     inkscape:cx="51.545766"
+     inkscape:cy="948.04782"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -266,22 +266,15 @@
          id="tspan4225"
          sodipodi:role="line">5</tspan></text>
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;marker-mid:"
-       d="m 364.54774,152.95002 c 41.9959,2.33311 34.4133,51.9116 34.4133,51.9116 l 0,0"
-       id="path4542"
-       inkscape:connector-curvature="0"
-       inkscape:export-xdpi="1000"
-       inkscape:export-ydpi="1000" />
-    <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
-       d="m 399.99115,201.86335 -0.0341,5.37744"
+       d="m 399.99115,204.77973 -0.0341,5.37744"
        id="path4686"
        inkscape:connector-curvature="0"
        inkscape:export-xdpi="1000"
        inkscape:export-ydpi="1000" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend-5)"
-       d="m 370.44208,153.11109 -5.21847,-1.29827"
+       d="m 366.85355,151.37022 -4.85339,-2.31572"
        id="path4686-5"
        inkscape:connector-curvature="0"
        inkscape:export-xdpi="1000"
@@ -299,5 +292,12 @@
          id="tspan4203"
          x="379.99887"
          y="219.16299">7</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1,1;stroke-dashoffset:0"
+       d="m 365.17908,151.59611 c 30.52046,6.59902 35.46973,49.49264 35.46973,49.49264"
+       id="path4179"
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
   </g>
 </svg>
