@@ -73,8 +73,8 @@ $19$ и представим его как линейную комбинацию
 \cellcolor{lightblue}1  & \cellcolor{lightblue}0 & \cellcolor{red}1 \\
 \hline
 \end{tabular}
-\label{tab:binary}
 \caption{Пошаговое вычисление числа в двоичной системе счисления}
+\label{tab:binary}
 \end{table}
 
 В таблице, красным цветом отмечен наиболее значимый бит, синим же 
@@ -288,8 +288,8 @@ $$S = \sum_{i=0}^{n}aq^i = a(1 + q + q^2 + q^3 + \ldots + q^n)$$
 
 \section{Множества}
 
-В математике множеством называется совокупность объектов любого типа~\ref{turner:probability}.
-Например, множеством является набор букв латинского алфавита: $\{a, b, c, \ldots z\}$, или множества 
+В математике множеством называется совокупность объектов любого типа~\cite{turner:probability}.
+Например, множеством является набор букв латинского алфавита: $\{a, b, c, \ldots, z\}$, или множества 
 все целых чисел $x \in \mathbb{Z}$. Обычно, для обозначения множеств, используют прописные буквы 
 латинского алфавита, а элементы заключают в фигурные скобки. Например, $A=\{a, b, c\}$ или 
 $X=\{x: x > 10\}$. Принадлежность элемента $x$ к множеству обычно обозначают символом $\in$.
@@ -359,12 +359,14 @@ $A \setminus B = \{x: x \in A \wedge x \notin B\}$.
                           & $A \cup \Omega = \Omega$  & $A \cap \Omega = A$            \\\hline
 Закон дополнения          & $A \cup A' = \Omega$ & $A \cap A' = \emptyset$ \\\hline
 Закон коммутативности     & $A \cup B = B \cup A$     & $A \cap B = B \cap A$ \\\hline
-Закон ассоциативности     & $(A \cup B) \cup C = A \cup (B \cup C)$ & $(A \cap B) \cap C = A \cap (B \cap C)$\\\hline
-Закон дистрибутивности    & $A \cup (B \cap C) = (A \cup C) \cap (A \cup B)$ & $A \cap (B \cup C) = (A \cap C) \cup (A \cap B)$ \\\hline
+Закон ассоциативности     & $(A \cup B) \cup C = $ & $(A \cap B) \cap C =$ \\
+                          & $A \cup (B \cup C)$    & $A \cap (B \cap C)$ \\\hline
+Закон дистрибутивности    & $A \cup (B \cap C) = $ & $A \cap (B \cup C) = $ \\
+                          & $(A \cup C) \cap (A \cup B)$ & $(A \cap C) \cup (A \cap B)$ \\\hline
 Закон Де Моргана          & $(A \cup B)'= A' \cap B'$ & $(A \cap B)'=A' \cup B'$ \\\hline
 \end{tabular}
-\label{tab:set:properties}
 \caption{Основные свойства множеств}
+\label{tab:set:properties}
 \end{table}
 
 \section{Алгоритмическая сложность}
@@ -551,7 +553,7 @@ $T(n) = T(n/2) + 1$, мы можем вычислить $T(n)$ через $T(n/4
 
 Начнем мы наше обсуждение с такой операции как отрицание. Пусть дано высказывание,
 которое может принимать значения $1$ и $0$ (или же истина и ложь). 
-Тогда справедливы утверждения описанные в таблице~\ref{tab:negation}.
+Тогда справедливы утверждения описанные в Таблице~\ref{tab:negation}.
 
 \begin{table}[!h]
 \centering
@@ -561,8 +563,8 @@ $A$ & $\neg A$ \\\hline
 0   & 1 \\\hline
 1   & 0 \\\hline
 \end{tabular}
-\label{tab:negation}
 \caption{Логическая операция отрицания}
+\label{tab:negation}
 \end{table}
 
 Результат конъюнкции, или же иными словами операции логического И, становится истинным тогда, когда оба 
@@ -579,8 +581,8 @@ $A$ & $B$ & $A \wedge B$ \\\hline
 0   &  1  &  0 \\\hline
 1   &  1  &  1 \\\hline
 \end{tabular}
-\label{tab:conjuction}
 \caption{Конъюнкция}
+\label{tab:conjuction}
 \end{table}
 
 Дизъюнкция - это логическая операция, результат которой будет истиной только тогда, когда
@@ -597,12 +599,12 @@ $A$ & $B$ & $A \vee B$ \\\hline
 0   &  1  &  1 \\\hline
 1   &  1  &  1 \\\hline
 \end{tabular}
-\label{tab:conjuction}
 \caption{Дизъюнкция}
+\label{tab:disjunction}
 \end{table}
 
 Импликация - это логическая операция, которая гласит: из лжи может следовать что угодно, а
-из истины только истина. В таблице~\ref{tab:implication} представим результаты этой логической 
+из истины только истина. В Таблице~\ref{tab:implication} представим результаты этой логической 
 операции. Заметим, что импликацию можно заменить следующим сложным логическим 
 высказыванием: $(\lnot A \vee B)$.
 
@@ -616,12 +618,12 @@ $A$ & $B$ & $A \rightarrow B$ \\\hline
 1   &  0  &  0 \\\hline
 1   &  1  &  1 \\\hline
 \end{tabular}
-\label{tab:implication}
 \caption{Импликация}
+\label{tab:implication}
 \end{table}
 
 Операция эквивалентности гласит, что если оба логических высказывания либо истина либо ложь, тогда
-результат всегда истина (смотрите Таблицу~\ref{equivalence}). Заметим, что операцию эквивалентности
+результат всегда истина (смотрите Таблицу~\ref{tab:equivalence}). Заметим, что операцию эквивалентности
 можно заменить следующим сложным логическим высказыванием: $(\lnot A \vee B) \wedge (A \vee \lnot B)$.
 
 \begin{table}[!ht]
@@ -634,8 +636,8 @@ $A$ & $B$ & $A \leftrightarrow B$ \\\hline
 1   &  0  &  0 \\\hline
 1   &  1  &  1 \\\hline
 \end{tabular}
-\label{tab:equivalence}
 \caption{Эквивалентность}
+\label{tab:equivalence}
 \end{table}
 
 И наконец, приведем таблицу (смотрите Таблицу~\ref{tab:xor}) 
@@ -654,8 +656,8 @@ $A$ & $B$ & $A \oplus B$ \\\hline
 1   &  0  &  1 \\\hline
 1   &  1  &  0 \\\hline
 \end{tabular}
-\label{tab:xor}
 \caption{Строгая дизъюнкция}
+\label{tab:xor}
 \end{table}
 
 \begin{table}[!ht]
@@ -683,15 +685,15 @@ $A$ & $B$ & $A \oplus B$ \\\hline
                              & $A \vee 0 = A$ \\
                              & $A \wedge 0 = 0$ \\\hline
 \end{tabular}
-\label{tab:logic:properties}
 \caption{Основные свойства булевой алгебры}
+\label{tab:logic:properties}
 \end{table}
 
 Заметим, что все эти логические операции часто используются в языках 
 программирования, когда составляются ветвления. Мы еще вернемся 
 к обсуждению составления логических выражений, когда будем обсуждать
 ветвления и логические операторы в языке Python. А пока в 
-Таблице~\ref{tab:logic_properties} приведём основные свойства булевой
+Таблице~\ref{tab:logic:properties} приведём основные свойства булевой
 алгебры.
 
 \section{Базовые сведения из теории вероятности}
@@ -822,8 +824,7 @@ $$D[X] = \sum_{i=0}^{n}p_i(x_i-E[X])^2$$
 
 Таким образом, два основных закона распределения, которые можно встретить на практике
 при анализе алгоритмов - это геометрическое и биномиальное распределения.
-На рисунке~\ref{fig:distributions} мы приводим эти распределения.
-
+На Графике~\ref{fig:distributions} мы приводим эти распределения.
 
 \begin{figure}[ht!]
 \centering
@@ -862,10 +863,9 @@ $$f(t) = E[e^{Xt}] = \sum_{m=0}^n e^{mt}C^m_np^{m}(1-p)^{n-m} = (pe^t+q)^n$$
 
 $$\frac{d}{dt}f(t) = n(pe^t+q)^{n-1}pe^t$$
 
-Вычислив полученное выражение в точке $t=0$ получаем 
+Вычислив полученное выражение в точке $t=0$ получаем: 
 
 $$\frac{d}{dt}f(0) = E[X] = n(pe^0+q)^{n-1}pe^0 = np$$
-
 
 \subsection{Зачем нужна теория вероятности в изучении алгоритмов?}
 
@@ -929,7 +929,7 @@ $P(A) = p = \frac{n-i}{n}$ (вероятность обратного событ
 $P(\bar{A}) = q = 1 - p =\frac{i}{n}$). Очевидно, что как и в предыдущем примере, 
 вероятность того, что свободная ячейка найдется после $j$-ой итерации на $i$-ом 
 шаге, будет равна $P(X=j)=pq^{j-1}$. Составим таблицу, в которой приведем 
-ожидаемое время выполнения алгоритма на каждом шаге (см. Таблицу~\ref{tab:permutations}).
+ожидаемое время выполнения алгоритма на каждом шаге (смотрите Таблицу~\ref{tab:permutations}).
 
 \begin{table}
 \centering
@@ -942,15 +942,15 @@ $3$ &  $(n-3)/n$      & $3/n$           & $\sum_{j=1}^{\infty} jpq^{j-1} = \frac
 $\ldots$ & $\ldots$   & $\ldots$        & $\ldots$ \\\hline
 $i$ &  $(n-i)/n$      & $i/n$           & $\sum_{j=1}^{\infty} jpq^{j-1} = \frac{1}{(1-q)} = \frac{n}{(n-i)} $ \\\hline
 \end{tabular}
-\label{tab:permutations}
 \caption{Пошаговое вычисление ожидаемого времени выполнения алгоритма нахождения перестановок}
+\label{tab:permutations}
 \end{table}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=0.6\textwidth]{graphics/approximation.pdf}
-\label{fig:approximation}
 \caption{Сравнение точного значения суммы и аппроксимации}
+\label{fig:approximation}
 \end{figure}
 
 
@@ -1178,8 +1178,6 @@ sys.float_info
 my_string_var = 'Python is great!';
 my_string_var = "Python is great!";
 \end{python}
-
-
 
 \section{Переменные}
 
