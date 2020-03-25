@@ -628,7 +628,6 @@ def FWA(adj, s, d):
 from math import inf
 
 def a_star_search(graph, start, end):
-
 	h = min_heap();
 	cost_so_far = [inf] * len(graph);
 	came_from = dict();
