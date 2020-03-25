@@ -293,6 +293,75 @@ class heap():
 		#print(self.length);
 		print(self.h[1:self.length + 1]);
 		#print(self.h)
+class hitem():
+	def __init__(self, value, cost):
+		self.value = value;
+		self.cost = cost;
+
+
+class min_heap():
+	def __init__(self):
+		self.h = [0];
+		self.length = 0;
+
+	def size(self):
+		return self.length;
+
+	def _down(self):
+		c = 1;
+		while c * 2 <= self.length:
+			if c * 2 + 1 <= self.length:
+				if self.h[c * 2].value < self.h[c * 2 + 1].value and self.h[c].value > self.h[c * 2 + 1].value:
+					v = self.h[c];
+					self.h[c] = self.h[c * 2 + 1];
+					self.h[c * 2 + 1] = v;
+					c = c * 2 + 1;
+				elif self.h[c].value > self.h[c * 2].value:
+					v = self.h[c];
+					self.h[c] = self.h[c * 2];
+					self.h[c * 2] = v;
+					c = c * 2;
+				else:
+					break;
+			else:
+				if self.h[c].value > self.h[c * 2].value:
+					v = self.h[c];
+					self.h[c] = self.h[c * 2];
+					self.h[c * 2] = v;
+					c = c * 2;
+				else:
+					break;
+
+	def _up(self):
+		c = self.length;
+		while c > 1 and self.h[c].value < self.h[floor(c / 2)].value:
+			v = self.h[c];
+			self.h[c] = self.h[floor(c / 2)];
+			self.h[floor(c / 2)] = v;
+			c = floor(c / 2);
+
+	def pop(self):
+		if self.length == 0:
+			return None;
+		self.length -= 1;
+		v = self.h[1];
+		if self.length == 0:
+			self.h = [0];
+			return v;
+		self.h[1] = self.h[len(self.h) - 1];
+		self.h = self.h[0:len(self.h) - 1];
+		self._down();
+		return v;
+
+	def push(self, v):
+		self.length += 1;
+		self.h.append(v);
+		self._up();
+
+	def print(self):
+		#print(self.length);
+		print(self.h[1:self.length + 1]);
+		#print(self.h)
 
 def heap_sort(a):
 	h = heap();
@@ -555,6 +624,50 @@ def FWA(adj, s, d):
 	# d   - destination
 	# Mind blowing algorithm
 	pass
+
+from math import inf
+
+def a_star_search(graph, start, end):
+
+	h = min_heap();
+	cost_so_far = [inf] * len(graph);
+	came_from = dict();
+	h.push(hitem(start, 0));
+	cost_so_far[start] = 0;
+
+	while h.size() > 0:
+		current = h.pop();
+		if current.value == end:
+			break;
+		for i in range(0, len(graph[current.value])):
+			if graph[current.value][i] == 0:
+				continue;
+			new_cost = cost_so_far[current.value] + graph[current.value][i];
+			if new_cost < cost_so_far[i]: 
+				cost_so_far[i] = new_cost;
+				h.push(hitem(i, new_cost));
+				came_from[i] = current.value;
+	return came_from;
+
+
+print("--------------Min heap --------------");
+h = min_heap();
+h.push(hitem(10, 0));
+h.push(hitem(5, 0));
+h.push(hitem(100, 0));
+h.push(hitem(-5, 0));
+h.push(hitem(20, 0));
+
+print(h.pop().value);
+print(h.pop().value);
+print(h.pop().value);
+print(h.pop().value);
+print(h.pop().value);
+
+print("------------ A* search algorithm-------------");
+graph=[[0, 1, 3, 0], [1, 0, 1, 3], [3, 1, 0, 1], [0, 3, 1, 0]];
+print(a_star_search(graph, 0, 3));
+
 
 #[0, 1, 4, 5, 8]
 
