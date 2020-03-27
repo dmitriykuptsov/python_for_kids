@@ -1386,6 +1386,68 @@ help(set)
 
 \section{Ассоциативные массивы}
 
+Ассоциативные массивы очень удобный способ представления словарей
+м программирование. Их основное свойство заключается в том, что 
+они хранят пары - ключ и значение. В языке программирования 
+ассоциативные массивы могут быть обявленны несколькими способами:
+
+\begin{python}
+my_dict = dict();
+my_dict = {};
+\end{python}
+
+Для того, чтобы занести пару ключ/значение в словарь достаточно выполнить следующую
+операцию:
+
+\begin{python}
+my_dict = dict();
+my_dict["key1"] = 1;
+my_dict[10] = "value1";
+\end{python}
+
+Полную справку по доступным методам ассоциативного массива можно получить 
+выполнив следующую команду в интерпритаторе Python.
+
+\begin{python}
+help(dict)
+\end{python}
+
+Здесь же мы приведём описание самых основных методов данного класса. 
+
+Откровенно говоря, реализовать свой собственный класс словаря не составляет
+особого труда. Например, если мы знаем, что ключи имеют униформалоьное 
+распределение, то словарь можно реализовать следующим образом:
+
+\begin{python}
+class my_dict():
+	def __init__(self, size = 10):
+		self.table_size = size;
+		self.table = [0] * self.table_size;
+
+	def __hash__(self, k):
+		return k % self.table_size;
+
+	def set(self, k, v):
+		if self.get(k) != None:
+			return;
+		_k = self.hash(k);
+		if not isinstance(self.table[_k], list):
+			self.table[_k] = list();
+		self.table[_k].append(item(k, v));
+
+	def get(self, k):
+		_k = self.hash(k);
+		if not isinstance(self.table[_k], list):
+			return None;
+		for i in self.table[_k]:
+			if i.key() == k:
+				return i.value();
+		return None
+\end{python}
+
+Причём если возникает коллизия (хэш функция выдаёт одно и тоже значение для разных 
+ключей), то заводят список, в котором содержатся все значения словаря с данным ключом.
+
 \section{Связавнные списки, очереди и стеки}
 
 Связанные списки довольно часто встречаются в программировании. 
@@ -1471,6 +1533,7 @@ class linked_list():
 						self.head = self.tail = None;
 					else:
 						self.head = item.next;
+						self.head.prev = None;
 					return item;
 				elif item == self.tail:
 					self.tail = self.tail.prev;
