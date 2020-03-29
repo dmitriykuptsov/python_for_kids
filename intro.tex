@@ -1472,24 +1472,45 @@ help(dict)
 распределение, то словарь можно реализовать следующим образом:
 
 \begin{python}
+class item():
+	def __init__(self, k, v):
+		self.k = k;
+		self.v = v;
+	def key(self):
+		return self.k;
+	def value(self, v = None):
+		if v == None:
+			return self.v;
+		else:
+			self.v = v;
+
 class my_dict():
 	def __init__(self, size = 10):
 		self.table_size = size;
 		self.table = [0] * self.table_size;
 
-	def __hash__(self, k):
+	def hash(self, k):
 		return k % self.table_size;
 
 	def set(self, k, v):
-		if self.get(k) != None:
-			return;
-		_k = self.__hash__(k);
+		_k = self.hash(k);
+
 		if not isinstance(self.table[_k], list):
 			self.table[_k] = list();
-		self.table[_k].append(item(k, v));
+
+		found = False;
+
+		for i in self.table[_k]:
+			if i.key() == k:
+				i.value(v);	
+				found = True;
+
+		if not found:
+			self.table[_k].append(item(k, v));
+
 
 	def get(self, k):
-		_k = self.__hash__(k);
+		_k = self.hash(k);
 		if not isinstance(self.table[_k], list):
 			return None;
 		for i in self.table[_k]:
