@@ -1796,6 +1796,8 @@ $2S=\sum_{l=1}^{\lfloor \log_2(i) \rfloor + 1} 2^l$, а $2S-S = 2^{\lfloor \log_
 \end{figure}
 
 \begin{python}
+from math import floor
+
 class heap():
 	def __init__(self):
 		self.h = [0];
@@ -1804,11 +1806,11 @@ class heap():
 	def size(self):
 		return self.length;
 
-	def _down(self):
+	def down(self):
 		c = 1;
 		while c * 2 <= self.length:
 			if c * 2 + 1 <= self.length:
-				if self.h[c * 2] < self.h[c * 2 + 1] 
+				if self.h[c * 2] < self.h[c * 2 + 1] \
 					and self.h[c] < self.h[c * 2 + 1]:
 					v = self.h[c];
 					self.h[c] = self.h[c * 2 + 1];
@@ -1830,7 +1832,7 @@ class heap():
 				else:
 					break;
 
-	def _up(self):
+	def up(self):
 		c = self.length;
 		while c > 1 and self.h[c] > self.h[floor(c / 2)]:
 			v = self.h[c];
@@ -1848,13 +1850,13 @@ class heap():
 			return v;
 		self.h[1] = self.h[len(self.h) - 1];
 		self.h = self.h[0:len(self.h) - 1];
-		self._down();
+		self.down();
 		return v;
 
 	def push(self, v):
 		self.length += 1;
 		self.h.append(v);
-		self._up();
+		self.up();
 \end{python}
 
 В предыдущей главе мы рассмотрели очереди. Но иногда возникает необходимость
@@ -1892,24 +1894,22 @@ class priority_queue():
 \begin{python}
 from enum import Enum
 
-class Direction(Enum):
+class direction(Enum):
 	ASC = 1
 	DESC = 2
 
-def heap_sort(a, direction = Direction.ASC):
+def heap_sort(a, direction = direction.ASC):
 	h = heap();
 	for i in a:
 		h.push(i);
 	b = [];
 	for i in range(0, h.size()):
 		b.append(h.pop());
-	if direction == Direction.ASC:
+	if direction == direction.ASC:
 		b.reverse();
 	return b;
 
-d = Direction(Direction.DESC);
-
-heap_sort([2, 1, 4, 55, 42, 11], d);
+heap_sort([2, 1, 4, 55, 42, 11], direction.DESC);
 \end{python}
 
 Проанализируем данный алгоритм. Так как мы знаем, что 
