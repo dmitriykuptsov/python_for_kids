@@ -648,6 +648,82 @@ def a_star_search(graph, start, end):
 				came_from[i] = current.value;
 	return came_from;
 
+class TreeNode():
+	def __init__(self, key):
+		self.key = key;
+		self.height = 0;
+		self.left = None;
+		self.right = None;
+	def __str__(self):
+		return str(self.key);
+
+class AVLTree():
+	def search(self, root, key):
+		
+
+		if not root:
+			return False;
+
+		if key == root.key:
+			return True;
+
+		if key > root.key:
+			return self.search(root.right, key);
+		else:
+			return self.search(root.left, key);
+
+	def insert(self, key, root):
+		
+		if not root:
+			return TreeNode(key);
+		if key > root.key:
+			root.right = self.insert(key, root.right);
+		elif key < root.key:
+			root.left = self.insert(key, root.left);
+		else:
+			return root;
+
+		root.height = 1 + max(self.get_height(root.left), self.get_height(root.right));
+		balance = self.get_height(root.left) - self.get_height(root.right);
+
+		if balance > 1 and key < root.left.key:
+			root = self.rotate_right(root);
+		if balance < -1 and key > root.right.key:
+			root = self.rotate_left(root);
+		if balance > 1 and key > root.left.key:
+			root.left = self.rotate_left(root.left);
+			root = self.rotate_right(root);
+		if balance < -1 and key < root.right.key:
+			root.right = self.rotate_right(root.right);
+			root = self.rotate_left(root);
+		return root;
+
+	def rotate_left(self, root):
+		z = root;
+		y = root.right;		
+		z.right = y.left;
+		y.left = z;
+		z.height = max(self.get_height(z.left), self.get_height(z.right)) + 1;
+		y.height = max(self.get_height(y.left), self.get_height(y.right)) + 1;
+		return y;
+
+	def rotate_right(self, root):
+		z = root;
+		y = root.left;		
+		z.left = y.right;
+		y.right = z;
+		z.height = max(self.get_height(z.left), self.get_height(z.right)) + 1;
+		y.height = max(self.get_height(y.left), self.get_height(y.right)) + 1;
+		return y;
+
+	def get_height(self, root):
+		if not root:
+			return 0;
+		return root.height;
+
+	def balance(self, left, right):
+		return self.get_height(left) - self.get_height(right);
+
 
 print("--------------Min heap --------------");
 h = min_heap();
@@ -793,3 +869,17 @@ print("-------------------- Longest common substring (dynamic programming) -----
 print(LCS("abax", "bax"));
 print("--------------- Divide and conquer (binary search) ------------------------------");
 print(binary_search([-1, 5, 10, 2, 0, 4, 5, 1, 2, 5, 1, 4, 12, 20, 3], 15));
+
+print("-------------------- AVL tree -----------------------");
+root = None;
+tree = AVLTree();
+root = tree.insert(1, root);
+root = tree.insert(2, root);
+root = tree.insert(11, root);
+root = tree.insert(3, root);
+root = tree.insert(6, root);
+root = tree.insert(22, root);
+root = tree.insert(14, root);
+root = tree.insert(0, root);
+print("Searching key 22");
+print(tree.search(root, 22));
