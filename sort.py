@@ -720,6 +720,29 @@ class AVLTree():
 	def balance(self, left, right):
 		return self.get_height(left) - self.get_height(right);
 
+def dijkstra(adj, weights, a):
+	d = [i for i in range(0, len(adj))];
+	for i in d:
+		d[i] = 1e10;
+	d[a] = 0;
+	U = [a];
+	V = [];
+	p = [None] * len(d);
+	p[a] = [0];
+	while len(U) != 0:
+		v = U[0];
+		U = U[1:];
+		V.append(v);
+		for j in range (0, len(d)):
+			if adj[v][j] == 0:
+				continue;
+			if j in V:
+				continue;
+			U.append(j);
+			if d[j] > d[v] + weights[v][j]:
+				d[j] = d[v] + weights[v][j]
+				p[j] = p[v] + [j];
+	return (d, p)
 
 print("--------------Min heap --------------");
 h = min_heap();
@@ -892,3 +915,20 @@ print(root.height);
 
 print("Searching key 0");
 print(tree.search(root, 0));
+
+adj = [[0, 1, 1, 0, 0, 1],
+		[1, 0, 1, 1, 0, 0],
+		[1, 1, 0, 1, 0, 1],
+		[0, 1, 1, 0, 1, 0],
+		[0, 0, 0, 1, 0, 1],
+		[1, 0, 1, 0, 1, 0]];
+
+weights = [[0, 7, 9, 0, 0, 14],
+		[7, 0, 10, 15, 0, 0],
+		[9, 10, 0, 11, 0, 2],
+		[0, 15, 11, 0, 6, 0],
+		[0, 0, 0, 6, 0, 6],
+		[14, 0, 2, 0, 9, 0]]; 
+
+print("----------------Dijkstra search ----------------");
+print(dijkstra(adj, weights, 0));
