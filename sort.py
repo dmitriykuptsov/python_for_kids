@@ -651,7 +651,7 @@ def a_star_search(graph, start, end):
 class TreeNode():
 	def __init__(self, key):
 		self.key = key;
-		self.height = 0;
+		self.height = 1;
 		self.left = None;
 		self.right = None;
 	def __str__(self):
@@ -659,21 +659,17 @@ class TreeNode():
 
 class AVLTree():
 	def search(self, root, key):
-		
-
 		if not root:
 			return False;
-
 		if key == root.key:
+			print(root.height);
 			return True;
-
 		if key > root.key:
 			return self.search(root.right, key);
 		else:
 			return self.search(root.left, key);
 
 	def insert(self, key, root):
-		
 		if not root:
 			return TreeNode(key);
 		if key > root.key:
@@ -683,7 +679,7 @@ class AVLTree():
 		else:
 			return root;
 
-		root.height = 1 + max(self.get_height(root.left), self.get_height(root.right));
+		root.height = max(self.get_height(root.left), self.get_height(root.right)) + 1;
 		balance = self.get_height(root.left) - self.get_height(root.right);
 
 		if balance > 1 and key < root.left.key:
@@ -883,3 +879,16 @@ root = tree.insert(14, root);
 root = tree.insert(0, root);
 print("Searching key 22");
 print(tree.search(root, 22));
+
+root = None;
+tree = AVLTree();
+root = tree.insert(4, root);
+root = tree.insert(2, root);
+root = tree.insert(5, root);
+root = tree.insert(1, root);
+root = tree.insert(3, root);
+root = tree.insert(0, root);
+print(root.height);
+
+print("Searching key 0");
+print(tree.search(root, 0));
