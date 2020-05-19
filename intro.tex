@@ -2111,10 +2111,80 @@ print(tree.search(root, 22));
 Объективно говоря, дерево можно обойти двумя способами, а именно - вглубь и вширь.
 Для обхода в ширь первым делом выводятся сначала значение узлов на первом уровне.
 Далее выводятся значения на втором уровне и так далее, пока не будут достигнуты
-листья деревьев. При обходе дерева в глубь сначала выводится значение листа в 
-левом поддереве. После выводятся значение в родительском узле, а затем - значение
-правого листа. Данный процесс продолжается до тех пор пока не будут перечислены 
-все узлы дерева.
+листья деревьев. При обходе дерева в глубь сначала выводится значение первого элемента (т.е. значение 
+корневого элемента). После выводятся значение в левого узла. Данный процесс продолжается до тех пор, 
+пока не будет достигнут левый лист дерева. После выводится значение правого листа (если он есть).
+Далее алгоритм поднимается на уровень выше и аналогичный сценарий повторяется пока в стеке 
+есть элементы. Приведём примеры того, какэто можно реализовать в языке программирования Python.
+
+\begin{python}
+class TreeNode():
+	def __init__(self, key):
+		self.key = key;
+		self.left = None;
+		self.right = None;
+	def __str__(self):
+		return str(self.key);
+
+class BST():
+	def __init__(self):
+		pass
+
+	def insert(self, key, root):
+		if not root:
+			return TreeNode(key);
+		if key > root.key:
+			root.right = self.insert(key, root.right);
+		elif key < root.key:
+			root.left = self.insert(key, root.left);
+		else:
+			return root;
+		return root;
+
+	def depth_traversal(self, root):
+		stack = [];
+		stack.append(root);
+		output = [];
+		while len(stack) > 0:
+			current = stack[-1];
+			stack = stack[:-1];
+			if current.right:
+				stack.append(current.right);
+			if current.left:
+				stack.append(current.left);
+			output.append(current.key);
+		return output;
+
+	def breadth_traversal(self, root):
+		if not root:
+			return [];
+		queue = [root];
+		output = [];
+		while len(queue) > 0:
+			current = queue[0];
+			queue = queue[1:];
+			output.append(current.key);
+			if current.left:
+				queue.append(current.left);
+			if current.right:
+				queue.append(current.right);
+			root = current;
+		return output;
+
+tree = BST();
+root = None;
+root = tree.insert(3, root);
+root = tree.insert(1, root);
+root = tree.insert(0, root);
+root = tree.insert(2, root);
+root = tree.insert(5, root);
+root = tree.insert(4, root);
+root = tree.insert(6, root);
+
+print(tree.breadth_traversal(root));
+print(tree.depth_traversal(root));
+
+\end{python}
 
 \subsection{Кучи}
 
