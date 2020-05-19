@@ -2885,12 +2885,11 @@ def dijkstra(adj, weights, a):
 		for j in range (0, len(d)):
 			if adj[v][j] == 0:
 				continue;
-			if j in V:
-				continue;
-			U.append(j);
+			if not j in V:
+				U.append(j);
 			if d[j] > d[v] + weights[v][j]:
 				d[j] = d[v] + weights[v][j]
-				p[j] = p[v] + p[j];
+				p[j] = p[v] + [j];
 	return (d, p)
 
 adj = [[0, 1, 1, 0, 0, 1],
@@ -2908,7 +2907,6 @@ weights = [[0, 7, 9, 0, 0, 14],
 		[14, 0, 2, 0, 9, 0]];
 
 dijkstra(adj, weights, 0);
-
 \end{python}
 
 \begin{figure}
