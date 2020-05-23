@@ -393,8 +393,12 @@ class linked_list():
 		if not isinstance(item, litem):
 			raise Exception("Invalid type for item");
 		self.length += 1;
-		if not self.head:
+		if not self.head and not self.tail:
 			self.head = item;
+			self.tail = item;
+			self.item.prev = None;
+			self.item.next = None;
+			return;
 		item.prev = self.tail;
 		item.next = None;
 		if self.tail != None:
@@ -427,6 +431,7 @@ class linked_list():
 						self.head = self.tail = None;
 					else:
 						self.head = item.next;
+						self.item.prev = None;
 					return item;
 				elif item == self.tail:
 					self.tail = self.tail.prev;
@@ -575,7 +580,7 @@ class hash_table_lp():
 		return False
 
 # Main property of a binary search tree
-# is that the left subtree has values which are
+# is that the left subtree has values are
 # smaller than value of a root element, 
 # and the values in the right subtree are 
 # larger than value in the root node. 
@@ -662,7 +667,6 @@ class AVLTree():
 		if not root:
 			return False;
 		if key == root.key:
-			print(root.height);
 			return True;
 		if key > root.key:
 			return self.search(root.right, key);
