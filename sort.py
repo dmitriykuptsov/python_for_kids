@@ -396,8 +396,8 @@ class linked_list():
 		if not self.head and not self.tail:
 			self.head = item;
 			self.tail = item;
-			self.item.prev = None;
-			self.item.next = None;
+			item.prev = None;
+			item.next = None;
 			return;
 		item.prev = self.tail;
 		item.next = None;
@@ -935,3 +935,12 @@ weights = [[0, 7, 9, 0, 0, 14],
 
 print("----------------Dijkstra search ----------------");
 print(dijkstra(adj, weights, 0));
+
+
+ll = linked_list();
+ll.add(litem(10));
+ll.add(litem(11));
+ll.add(litem(12));
+ll.add(litem(0));
+for i in ll.iterate():
+	print(i);
