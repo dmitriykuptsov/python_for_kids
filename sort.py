@@ -401,8 +401,7 @@ class linked_list():
 			return;
 		item.prev = self.tail;
 		item.next = None;
-		if self.tail != None:
-			self.tail.next = item;
+		self.tail.next = item;
 		self.tail = item;
 
 	def get(self, index):
@@ -431,7 +430,7 @@ class linked_list():
 						self.head = self.tail = None;
 					else:
 						self.head = item.next;
-						self.item.prev = None;
+						self.head.prev = None;
 					return item;
 				elif item == self.tail:
 					self.tail = self.tail.prev;
