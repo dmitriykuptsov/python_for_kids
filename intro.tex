@@ -1872,8 +1872,8 @@ class linked_list():
 		if not self.head and not self.tail:
 			self.head = item;
 			self.tail = item;
-			self.item.prev = None;
-			self.item.next = None;
+			item.prev = None;
+			item.next = None;
 			return;
 		item.prev = self.tail;
 		item.next = None;
