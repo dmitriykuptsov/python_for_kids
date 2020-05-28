@@ -1811,16 +1811,42 @@ help(dict)
 \end{python}
 
 Здесь же мы приведём описание самых основных методов данного класса. 
-Начнём мы наш диалог с \texttt{keys}. Этот метод позволяет выбрать 
+Начнём мы наш диалог с метода \texttt{keys}. Этот метод позволяет выбрать 
 все ключи в ассоциативном массиве и вернуть их в виде списка. Аналогичным 
 образом можно выбрать все значения ассоциативного массива (включая ключ,
 под которым хранится значение). Нпример, все значения и соответствующие ключи 
-можно выбрать вызвав метод \texttt{items}. Приведём небольшой кусок кода:
+можно выбрать вызвав метод \texttt{items} (если же нужны только значения,
+то можно воспользоваться методом \texttt{values}). Приведём небольшой кусок кода:
 
 \begin{python}
 my_dict = dict({"one": 1, "two": 2});
 for key, item in my_dict.items():
 	print(item);
+\end{python}
+
+Что бы выбрать элемент по ключу достаточно выполнить следующую команду:
+
+\begin{python}
+my_dict = dict({"one": 1, "two": 2});
+print(my_dict["one"]));
+\end{python}
+
+Если ключа нет в словаре, то выполнение прекратится и будет вызвана ошибка.
+Для того, чтобы убедиться в том, что ошибки не будет можно вызвать метод 
+\texttt{get} со значением по-умолчанию:
+
+\begin{python}
+my_dict = dict({"one": 1, "two": 2});
+print(my_dict.get("one", None);
+\end{python}
+
+Для добавления или обновления значения можно присвоить словарю 
+значение по ключу. Например:
+
+\begin{python}
+my_dict = dict();
+my_dict["one"] = 1;
+my_dict["one"] = None;
 \end{python}
 
 Откровенно говоря, реализовать свой собственный класс словаря не составляет
@@ -2148,7 +2174,7 @@ class queue():
 читателю ниже. Но вернемся к обсуждению того, как работают эти деревья. 
 
 \begin{python}
-class tree_node():
+class node():
 	def __init__(self, key):
 		self.key = key;
 		self.height = 0;
@@ -2161,10 +2187,8 @@ class AVL_tree():
 	def search(self, root, key):
 		if not root:
 			return False;
-
 		if key == root.key:
 			return True;
-
 		if key > root.key:
 			return self.search(root.right, key);
 		else:
@@ -2172,7 +2196,7 @@ class AVL_tree():
 
 	def insert(self, key, root):
 		if not root:
-			return tree_node(key);
+			return node(key);
 		if key > root.key:
 			root.right = self.insert(key, root.right);
 		elif key < root.key:
@@ -2180,7 +2204,7 @@ class AVL_tree():
 		else:
 			return root;
 
-		root.height = 1 + max(self.get_height(root.left), self.get_height(root.right));
+		root.height = max(self.get_height(root.left), self.get_height(root.right)) + 1;
 		balance = self.get_height(root.left) - self.get_height(root.right);
 
 		if balance > 1 and key < root.left.key:
