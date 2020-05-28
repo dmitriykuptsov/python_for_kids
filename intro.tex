@@ -1779,7 +1779,8 @@ my_list = [0] * 5;
 способе все элементы массива объявляются сразу при инициализации.
 
 Рассмотрим основные свойства и методы массивов (полную справку можно 
-получить вызвав \texttt{help(list)}).
+получить вызвав \texttt{help(list)}). 
+
 
 \section{Ассоциативные массивы}
 
@@ -1810,6 +1811,17 @@ help(dict)
 \end{python}
 
 Здесь же мы приведём описание самых основных методов данного класса. 
+Начнём мы наш диалог с \texttt{keys}. Этот метод позволяет выбрать 
+все ключи в ассоциативном массиве и вернуть их в виде списка. Аналогичным 
+образом можно выбрать все значения ассоциативного массива (включая ключ,
+под которым хранится значение). Нпример, все значения и соответствующие ключи 
+можно выбрать вызвав метод \texttt{items}. Приведём небольшой кусок кода:
+
+\begin{python}
+my_dict = dict({"one": 1, "two": 2});
+for key, item in my_dict.items():
+	print(item);
+\end{python}
 
 Откровенно говоря, реализовать свой собственный класс словаря не составляет
 особого труда. Например, если мы знаем, что ключи имеют равномерное 
@@ -2238,7 +2250,7 @@ print(tree.search(root, 22));
 программирования Python.
 
 \begin{python}
-class TreeNode():
+class node():
 	def __init__(self, key):
 		self.key = key;
 		self.left = None;
@@ -2246,13 +2258,13 @@ class TreeNode():
 	def __str__(self):
 		return str(self.key);
 
-class BST():
+class bst():
 	def __init__(self):
 		pass
 
 	def insert(self, key, root):
 		if not root:
-			return TreeNode(key);
+			return node(key);
 		if key > root.key:
 			root.right = self.insert(key, root.right);
 		elif key < root.key:
@@ -2291,7 +2303,7 @@ class BST():
 			root = current;
 		return output;
 
-tree = BST();
+tree = bst();
 root = None;
 root = tree.insert(3, root);
 root = tree.insert(1, root);
