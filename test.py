@@ -12,7 +12,7 @@ def dijkstra(adj, weights, a):
 		min_d = inf;
 		v = None;
 		for i in range(0, len(d)):
-			if V[i] == False and d[i] < min_d:
+			if V[i] == False and d[i] <= min_d:
 				v = i;
 				min_d = d[i];
 		V[v] = True;
