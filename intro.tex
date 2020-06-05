@@ -3034,19 +3034,20 @@ def dijkstra(adj, weights, a):
 	for i in d:
 		d[i] = inf;
 	d[a] = 0;
-	U = [a];
-	V = [];
+	V = [False] * len(d);
 	p = [None] * len(d);
 	p[a] = [0];
-	while len(U) != 0:
-		v = U[0];
-		U = U[1:];
-		V.append(v);
+	while False in V:
+		min_d = inf;
+		v = None;
+		for i in range(0, len(d)):
+			if V[i] == False and d[i] < min_d:
+				v = i;
+				min_d = d[i];
+		V[v] = True;
 		for j in range (0, len(d)):
 			if adj[v][j] == 0:
 				continue;
-			if not j in V:
-				U.append(j);
 			if d[j] > d[v] + weights[v][j]:
 				d[j] = d[v] + weights[v][j]
 				p[j] = p[v] + [j];
